@@ -216,10 +216,6 @@ class Singleton : public SingletonBase {
     }
 };
 
-#define SINGLETON(class_name)           \
-    friend class Singleton<class_name>; \
-    friend struct InstanceSafetyHelper<class_name>;
-
 /**
  * An example of a recursion reference in instantiation:
  *

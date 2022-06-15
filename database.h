@@ -24,7 +24,7 @@ public:
     QString getSetting(const QString& name, const QString& default_value = "", bool create_if_not_found = false);
     bool setSetting(const QString& name, const QString& value, bool create_if_not_found = true);
 
-    ~Database();
+    ~Database() = default;
 
 protected:
     bool insertSetting(const QString& name, const QString& value);
