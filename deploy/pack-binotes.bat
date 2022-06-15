@@ -1,0 +1,1 @@
+C:\Qt\Tools\QtInstallerFramework\4.3\bin\binarycreator.exe -c config\binotes.xml -p packages BiNotes-Setup-1.0.0.exe

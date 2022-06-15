@@ -1,0 +1,13 @@
+CompileFlags:
+  CompilationDatabase: ../build-BiNotes-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug
+  Add: 
+    - -IC:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include
+    - -IC:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt
+
+---
+
+If:
+  PathMatch: .*\.h
+CompileFlags:
+  Add:
+    - -xc++

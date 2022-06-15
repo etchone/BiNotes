@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>Desktop shortcut</DisplayName>
+    <Description>Create a shortcut on the desktop.</Description>
+    <Version>1.0.0</Version>
+    <ReleaseDate>2022-05-25</ReleaseDate>
+    <Default>script</Default>
+    <Script>installscript.qs</Script>
+</Package>
