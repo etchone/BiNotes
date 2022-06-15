@@ -27,9 +27,6 @@ Database::Database() {
             this, &Database::aboutToClose);
 }
 
-Database::~Database() {
-}
-
 void Database::createTablesIfNotExist() {
     QSqlQuery query(m_db);
     bool result = query.prepare("CREATE TABLE IF NOT EXISTS memo ("
