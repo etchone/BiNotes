@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -8,20 +8,25 @@ CONFIG += c++11
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += \
+    cpplibraries/
+
 SOURCES += \
     actions.cpp \
     activewindowmodel.cpp \
+    application.cpp \
     database.cpp \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
-    singleton.cpp \
     systemtrayicon.cpp \
-    windowhandlebutton.cpp
+    windowhandlebutton.cpp \
+    cpplibraries/singleton.cpp
 
 HEADERS += \
     actions.h \
     activewindowmodel.h \
+    application.h \
     database.h \
     editablecombobox.h \
     filteredmemosmodel.h \
@@ -30,7 +35,9 @@ HEADERS += \
     menu.h \
     singleton.h \
     systemtrayicon.h \
-    windowhandlebutton.h
+    windowhandlebutton.h \
+    cpplibraries/singleton.h \
+    cpplibraries/collectable.h
 
 FORMS += \
     mainwindow.ui

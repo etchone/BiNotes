@@ -1,50 +1,43 @@
 #include "activewindowmodel.h"
 
-ActiveWindowModel::ActiveWindowModel(QObject* parent) :
-    QStringListModel(parent)
-{
-
-}
+ActiveWindowModel::ActiveWindowModel(QObject* parent)
+    : QStringListModel(parent) {}
 
 #if defined(WIN32)
 #include <Windows.h>
 
 int ActiveWindowModelEnumWindowProc(HWND hwnd, LPARAM param) {
-    QStringList *list = (QStringList*)param;
-    do {
-        if (!IsWindowVisible(hwnd))
-            break;
+  auto* list = (QStringList*)param;
+  do {
+    if (!IsWindowVisible(hwnd)) break;
 
-        int exStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
-        if ((exStyle & WS_EX_TOPMOST) == WS_EX_TOPMOST)
-            break;
+    int exStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
+    if ((exStyle & WS_EX_TOPMOST) == WS_EX_TOPMOST) break;
 
-        char buf[1024];
-        int len = GetWindowTextA(hwnd, buf, 1024);
+    char buf[1024];
+    int len = GetWindowTextA(hwnd, buf, 1024);
 
-        if (len == 0)
-            break;
+    if (len == 0) break;
 
-        QString name = QString::fromLocal8Bit(buf, len);
+    QString name = QString::fromLocal8Bit(buf, len);
 
-        len = GetWindowModuleFileNameA(hwnd, buf, 1024);
+    len = GetWindowModuleFileNameA(hwnd, buf, 1024);
 
-        if (len)
-            name.append(" (" + QString::fromLocal8Bit(buf) + ')');
+    if (len) name.append(" (" + QString::fromLocal8Bit(buf) + ')');
 
-        list->append(std::move(name));
-    } while (0);
+    list->append(std::move(name));
+  } while (false);
 
-    return list->size() < 255 ? TRUE : FALSE;
+  return list->size() < 255 ? TRUE : FALSE;
 }
 
-void ActiveWindowModel::updateTitles(void) {
-    QStringList titles;
-    EnumWindows(ActiveWindowModelEnumWindowProc, (LPARAM)&titles);
-    titles.append(tr("(All)"));
-    setStringList(titles);
+void ActiveWindowModel::updateTitles() {
+  QStringList titles;
+  EnumWindows(ActiveWindowModelEnumWindowProc, (LPARAM)&titles);
+  titles.append(tr("(All)"));
+  setStringList(titles);
 
-    emit titlesUpdated(titles);
+  emit titlesUpdated(titles);
 }
 
 #else  // WIN32
