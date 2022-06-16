@@ -3,42 +3,44 @@
 
 #include <memo.h>
 #include <singleton.h>
-#include <QSqlDatabase>
+
 #include <QObject>
+#include <QSqlDatabase>
 
-class Database : public QObject, public Singleton<Database>
-{
-    Q_OBJECT
+class Database : public QObject, public Singleton<Database> {
+  Q_OBJECT
 
-signals:
-    void aboutToClose();
+ signals:
+  void aboutToClose();
 
-public:
-    QVector<Memo> filterMemo(const QString& glob_title) const;
+ public:
+  [[nodiscard]] QVector<Memo> filterMemo(const QString& glob_title) const;
 
-    Memo createMemo(const QString& title);
+  Memo createMemo(const QString& title);
 
-    bool updateMemo(Memo& memo);
-    bool eraseMemo(Memo& memo);
+  bool updateMemo(Memo& memo);
+  bool eraseMemo(Memo& memo);
 
-    QString getSetting(const QString& name, const QString& default_value = "", bool create_if_not_found = false);
-    bool setSetting(const QString& name, const QString& value, bool create_if_not_found = true);
+  QString getSetting(const QString& name, const QString& default_value = "",
+                     bool create_if_not_found = false);
+  bool setSetting(const QString& name, const QString& value,
+                  bool create_if_not_found = true);
 
-    ~Database() = default;
+  ~Database() = default;
 
-protected:
-    bool insertSetting(const QString& name, const QString& value);
-    bool updateSetting(const QString& name, const QString& value);
-    // bool deleteSetting(const QString& name);
+ protected:
+  bool insertSetting(const QString& name, const QString& value);
+  bool updateSetting(const QString& name, const QString& value);
+  // bool deleteSetting(const QString& name);
 
-    friend class Singleton<Database>;
-    Database();
+  friend class Singleton<Database>;
+  Database();
 
-private:
-    void createTablesIfNotExist();
+ private:
+  void createTablesIfNotExist();
 
-private:
-    QSqlDatabase m_db;
+ private:
+  QSqlDatabase m_db;
 };
 
-#endif // MEMODB_H
+#endif  // MEMODB_H

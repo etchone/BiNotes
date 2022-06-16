@@ -61,3 +61,5 @@ deploy-win\*
 *.exp
 .vscode
 *.psd
+compile_flags.txt
+.cache
