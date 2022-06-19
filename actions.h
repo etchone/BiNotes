@@ -9,7 +9,6 @@ class QAction;
 class Actions : public QObject, public Singleton<Actions> {
   Q_OBJECT
  public:
-  Actions();
   ~Actions() = default;
 
   QAction* hideWindowAction();
@@ -20,6 +19,10 @@ class Actions : public QObject, public Singleton<Actions> {
   QAction* monitorForegroundAction();
   QAction* autoRunAction();
   QAction* quitProgramAction();
+
+ protected:
+  friend class Singleton<Actions>;
+  Actions();
 
  signals:
   void hideWindowTriggered();

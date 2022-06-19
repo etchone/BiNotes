@@ -6,7 +6,6 @@
 #include "memo.h"
 #include "singleton.h"
 
-
 class ActiveWindowModel;
 class FilteredMemosModel;
 
@@ -20,8 +19,11 @@ class MainWindow : public QMainWindow, public Singleton<MainWindow> {
   Q_OBJECT
 
  public:
-  MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
+
+ protected:
+  friend class Singleton<MainWindow>;
+  MainWindow(QWidget *parent = nullptr);
 
  public slots:
   void flushMemos();
