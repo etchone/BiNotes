@@ -233,6 +233,19 @@ void MainWindow::loadWindowGeometryFromDatabase() {
   if (!ok) return;
   h = list[3].toInt(&ok);
   if (!ok) return;
+
+  auto screen_geometry = screen()->availableGeometry();
+
+  if (x < screen_geometry.left())
+      x = screen_geometry.left();
+  else if (x > screen_geometry.right() - w)
+      x = screen_geometry.right() - w;
+
+  if (y < screen_geometry.top())
+      y = screen_geometry.top();
+  else if (y > screen_geometry.bottom() - h)
+      y = screen_geometry.bottom() - h;
+
   setGeometry(QRect(x, y, w, h));
 }
 
