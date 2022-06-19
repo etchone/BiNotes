@@ -13,7 +13,8 @@ class SystemTrayIcon : public QSystemTrayIcon,
  private slots:
   void onActivate(ActivationReason reason);
 
- public:
+ protected:
+  friend Singleton<SystemTrayIcon>;
   explicit SystemTrayIcon(QObject *parent = nullptr);
 };
 

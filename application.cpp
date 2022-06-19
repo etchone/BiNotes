@@ -11,7 +11,13 @@
 #include "systemtrayicon.h"
 
 Application::Application(int argc, char *argv[])
-    : QApplication(argc, argv), m_server_name(), m_local_server(nullptr) {}
+    : QApplication(argc, argv),
+      m_server_name(),
+      m_local_server(nullptr),
+      m_db(nullptr),
+      m_actions(nullptr),
+      m_mw(nullptr),
+      m_tray(nullptr) {}
 
 int Application::exec() {
   if (tryActivateCreatedInstance()) {
@@ -21,16 +27,19 @@ int Application::exec() {
 
   setWindowIcon(QIcon(":/icon"));
 
-  Database::Instance();
-  Actions::Instance();
+  m_db = Database::Instance();
+  m_actions = Actions::Instance();
 
-  MainWindow::Instance()->show();
+  m_mw = MainWindow::Instance();
+
+  m_mw->show();
 
   connect(this, &Application::instanceActivated, Actions::getInstance(),
           &Actions::showWindowTriggered);
 
   if (SystemTrayIcon::isSystemTrayAvailable()) {
-    SystemTrayIcon::Instance();
+    m_tray = SystemTrayIcon::Instance(this);
+    m_tray->show();
   }
 
   int ret = QApplication::exec();

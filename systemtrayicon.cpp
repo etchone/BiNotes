@@ -12,7 +12,6 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
           &SystemTrayIcon::hide);
   connect(QApplication::instance(), &QApplication::aboutToQuit, this,
           &SystemTrayIcon::deleteLater);
-  show();
 
   setContextMenu(new Menu(Menu::SystemTrayMenu, MainWindow::getInstance()));
 }

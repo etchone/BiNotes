@@ -60,3 +60,6 @@ TRANSLATIONS = BiNotes_zh.ts
 
 RC_ICONS = notepad-icon.ico
 ICON = notepad-icon.ico
+
+DISTFILES += \
+    ChangeLog.md
