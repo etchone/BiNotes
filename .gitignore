@@ -63,3 +63,4 @@ deploy-win\*
 *.psd
 compile_flags.txt
 .cache
+docs

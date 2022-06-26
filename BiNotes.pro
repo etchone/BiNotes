@@ -20,8 +20,7 @@ SOURCES += \
     mainwindow.cpp \
     menu.cpp \
     systemtrayicon.cpp \
-    windowhandlebutton.cpp \
-    cpplibraries/singleton.cpp
+    windowhandlebutton.cpp
 
 HEADERS += \
     actions.h \
@@ -35,9 +34,7 @@ HEADERS += \
     menu.h \
     singleton.h \
     systemtrayicon.h \
-    windowhandlebutton.h \
-    cpplibraries/singleton.h \
-    cpplibraries/collectable.h
+    windowhandlebutton.h
 
 FORMS += \
     mainwindow.ui
@@ -52,6 +49,8 @@ win32:LIBS += -lUser32
 include (3rdparty/qmarkdowntextedit/qmarkdowntextedit.pri)
 
 include (3rdparty/sqlite3/sqlite3.pri)
+
+include (cpplibraries/cpplibraries.pri)
 
 RESOURCES += \
     resources.qrc
