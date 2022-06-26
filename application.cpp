@@ -27,10 +27,10 @@ int Application::exec() {
 
   setWindowIcon(QIcon(":/icon"));
 
-  m_db = Database::Instance();
-  m_actions = Actions::Instance();
+  m_db = Database::createInstance();
+  m_actions = Actions::createInstance();
 
-  m_mw = MainWindow::Instance();
+  m_mw = MainWindow::createInstance();
 
   m_mw->show();
 
@@ -38,12 +38,19 @@ int Application::exec() {
           &Actions::showWindowTriggered);
 
   if (SystemTrayIcon::isSystemTrayAvailable()) {
-    m_tray = SystemTrayIcon::Instance(this);
+    m_tray = SystemTrayIcon::createInstance(this);
     m_tray->show();
   }
 
   int ret = QApplication::exec();
   deinitLocalServer();
+
+  // destruction of m_tray is managed by qt
+  // m_tray->destructInstance();
+  m_mw->destructInstance();
+  m_actions->destructInstance();
+  m_db->destructInstance();
+
   return ret;
 }
 
