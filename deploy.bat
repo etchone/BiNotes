@@ -6,5 +6,5 @@ del /q deploy\packages\com.h1msk.binotes\data\*
 xcopy /s /y deploy-win\* deploy\packages\com.h1msk.binotes\data\
 rmdir /s /q deploy-win
 cd deploy
-C:\Qt\Tools\QtInstallerFramework\4.6\bin\binarycreator.exe -c config\binotes.xml -p packages BiNotes-Setup-1.0.1.exe
+./pack-binotes.bat
 cd ..
