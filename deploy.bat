@@ -1,6 +1,6 @@
 mkdir deploy-win
-copy ..\build-BiNotes-Desktop_Qt_6_2_4_MSVC2019_64bit-Release\release\BiNotes.exe deploy-win\
-"C:\Qt\6.2.4\msvc2019_64\bin\windeployqt.exe" deploy-win\BiNotes.exe
+copy build\Desktop_Qt_6_8_2_MSVC2022_64bit-Release\release\BiNotes.exe deploy-win\
+"D:\Qt\6.8.2\msvc2022_64\bin\windeployqt.exe" deploy-win\BiNotes.exe
 copy BiNotes_zh.qm deploy-win\translations\
 del /q deploy\packages\com.h1msk.binotes\data\*
 xcopy /s /y deploy-win\* deploy\packages\com.h1msk.binotes\data\

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Installer>
     <Name>BiNotes</Name>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Title>BiNotes</Title>
     <Publisher>H1MSK</Publisher>
     <StartMenuDir>BiNotes</StartMenuDir>
